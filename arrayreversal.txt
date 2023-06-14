@@ -1,0 +1,54 @@
+using System;
+
+class ArrayReversal
+{
+    static void ReverseArray(int[] array)
+    {
+        int start = 0;
+        int end = array.Length - 1;
+
+        while (start < end)
+        {
+            // Swap elements at start and end positions
+            int temp = array[start];
+            array[start] = array[end];
+            array[end] = temp;
+
+            // Move the start and end pointers towards the center
+            start++;
+            end--;
+        }
+    }
+
+    static void PrintArray(int[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    static void SaveArray(int[] array, string filePath)
+    {
+        string arrayString = string.Join(" ", array);
+        System.IO.File.WriteAllText(filePath, arrayString);
+        Console.WriteLine("Array saved to file: " + filePath);
+    }
+
+    static void Main(string[] args)
+    {
+        int[] array = { 1, 2, 3, 4, 5 };
+
+        Console.WriteLine("Original array:");
+        PrintArray(array);
+
+        ReverseArray(array);
+
+        Console.WriteLine("Reversed array:");
+        PrintArray(array);
+
+        string filePath = "array.txt";
+        SaveArray(array, filePath);
+    }
+}
